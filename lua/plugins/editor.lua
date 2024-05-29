@@ -53,15 +53,51 @@ return {
       "MunifTanjim/nui.nvim",
       "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
+    keys = {
+      {
+        "<leader>fe",
+        function()
+          require("neo-tree.command").execute({ toggle = true, dir = LazyVim.root(), reveal = true })
+        end,
+        desc = "Explorer NeoTree (Root Dir)",
+      },
+      {
+        "<leader>fE",
+        function()
+          require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd(), reveal = true })
+        end,
+        desc = "Explorer NeoTree (cwd)",
+      },
+      { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (Root Dir)", remap = true },
+      { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
+      {
+        "<leader>ge",
+        function()
+          require("neo-tree.command").execute({ source = "git_status", toggle = true, reveal = true })
+        end,
+        desc = "Git Explorer",
+      },
+      {
+        "<leader>be",
+        function()
+          require("neo-tree.command").execute({ source = "buffers", toggle = true, reveal = true })
+        end,
+        desc = "Buffer Explorer",
+      },
+    },
     config = function()
       require("neo-tree").setup({
         filesystem = {
-          follow_current_file = true,
+          follow_current_file = { enabled = true },
+          use_libuv_file_watcher = true,
           filtered_items = {
             visible = true,
             hide_dotfiles = false,
             hide_gitignored = false,
           },
+        },
+        window = {
+          position = "float",
         },
       })
     end,
