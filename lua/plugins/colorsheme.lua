@@ -1,7 +1,6 @@
 return {
   {
-    "craftzdog/solarized-osaka.nvim",
-    branch = "osaka",
+    "ellisonleao/gruvbox.nvim",
     lazy = true,
     priority = 1000,
     opts = function()
