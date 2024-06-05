@@ -119,6 +119,7 @@ return {
       "nvim-telescope/telescope-file-browser.nvim",
     },
     keys = {
+      { "<leader><space>", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
       {
         "<leader>fP",
         function()
